@@ -1,16 +1,25 @@
 <div class="container">
   <div class="modal-content">
     <h2>ADD TASK</h2>
-    <form id="addTaskForm">
+    <form id="addTaskForm" [formGroup]="addTaskForm">
       <div class="row">
         <div class="col-6">
           <label for="name">Name:</label>
-          <input type="text" id="name" #nameText name="name" placeholder="Enter Name" required />
+          <input type="text" id="name" #nameText name="name" formControlName="name" placeholder="Enter Name" required />
+          <div *ngIf="addTaskForm.get('name')?.invalid && addTaskForm.get('name')?.touched">
+            <small class="validation-err" *ngIf="addTaskForm.get('name')?.hasError('required')">Name is required.</small>
+            <small class="validation-err" *ngIf="addTaskForm.get('name')?.hasError('minlength')">Name should be at least 3 characters long.</small>
+          </div>
         </div>
         <div class="col-6">
           <label for="description">Description:</label>
-          <input type="text" id="description" #descriptionText name="description" placeholder="Enter Description"
+          <input type="text" id="description" #descriptionText name="description" formControlName="description" placeholder="Enter Description"
             required />
+            <div *ngIf="addTaskForm.get('description')?.invalid && addTaskForm.get('description')?.touched">
+              <small class="validation-err" *ngIf="addTaskForm.get('description')?.hasError('required')">Description is required.</small>
+              <small class="validation-err" *ngIf="addTaskForm.get('description')?.hasError('minlength')">Description should be at least 5 characters long.</small>
+            </div>
+  
         </div>
       </div>
       <div class="row">
@@ -37,10 +46,6 @@
         <div class="col-6">
           <label for="begindate">Begin Date:</label>
           <input type="text" id="begindate" #beginDateText name="begindate" placeholder="Enter Begin Date" required/>
-          <!-- <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Enter Begin Date" />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker> -->
         </div>
         <div class="col-6">
           <label for="enddate">End Date:</label>
@@ -50,7 +55,7 @@
       <div class="row">
         <div class="col-6"></div>
         <div class="col-3">
-          <button mat-button mat-raised-button class="ml-3 btn-submit" color="primary" (click)="saveTask($event)"
+          <button mat-button mat-raised-button class="ml-3 btn-submit" color="primary" [disabled]="addTaskForm.invalid" (click)="saveTask($event)"
             type="submit">
             Submit
           </button>

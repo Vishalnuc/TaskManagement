@@ -9,10 +9,12 @@ import { Priority } from '../../priority.enum';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-addtask',
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatButtonModule],
+  imports: [MatFormFieldModule, CommonModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './addtask.component.html',
   providers: [provideNativeDateAdapter()],
   styleUrl: './addtask.component.css'
@@ -34,24 +36,39 @@ export class AddtaskComponent {
     BeginDate: new Date(),
     EndDate: new Date()
   };  // Initialize taskData object
+  
+  addTaskForm: FormGroup;
 
-  constructor(private taskService: TaskService, private readonly matDialog: MatDialog) { }
+  constructor(private taskService: TaskService, 
+              private readonly matDialog: MatDialog,
+              private formBuilder: FormBuilder) {
+                this.addTaskForm = this.formBuilder.group ({
+                  // Validations
+                  name: ['', [Validators.required, Validators.minLength(3)]],
+                  description: ['', [Validators.required, Validators.minLength(5)]],
+                })
+              }
 
   saveTask(event: any) {
     event.preventDefault();
-
     this.setValues();
 
-    if (this.taskData) {
-      this.taskService.saveTask(this.taskData).subscribe({
-        next: (response) => {
-          console.log('Task saved successfully:', response);
-        },
-        error: (error) => {
-          console.error('Error saving task:', error);
-        }
-      });
+    if (this.addTaskForm.valid) {
+
+
+      if (this.taskData) {
+        this.taskService.saveTask(this.taskData).subscribe({
+          next: (response) => {
+            console.log('Task saved successfully:', response);
+          },
+          error: (error) => {
+            console.error('Error saving task:', error);
+          }
+        });
+      }
     }
+    else
+      console.log("form is invalid");
 
   const formElement = document.getElementById("addTaskForm") as HTMLFormElement;
     formElement.reset();
@@ -66,14 +83,14 @@ getAllTasks() {
 }
 
 setValues() {
-  const pp = this.priorityText.nativeElement.value;
-  const pri = Priority[pp.toLowerCase() as keyof typeof Priority];
+  const priorityValue = this.priorityText.nativeElement.value;
+  const priorityEnumValue = Priority[priorityValue.toLowerCase() as keyof typeof Priority];
 
   this.taskData = {
     TaskID: 0,
     Name: this.nameText.nativeElement.value,
     Description: this.descriptionText.nativeElement.value,
-    Priority: pri,
+    Priority: priorityEnumValue,
     Status: this.statusText.nativeElement.value,
     BeginDate: new Date(this.beginDateText.nativeElement.value),
     EndDate: new Date(this.endDateText.nativeElement.value),

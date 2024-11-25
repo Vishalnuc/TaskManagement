@@ -9,7 +9,8 @@ import { ITask } from './task.interface';
 export class TaskService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiURLPath = 'https://taskmanagementtms.azurewebsites.net/';
+  private apiURLPath = 'https://taskmanagementtms.azurewebsites.net/api/TaskManagement/'
+  //private apiURLPath = 'https://taskmanagementtms.azurewebsites.net/';
 
   getAllTasks(): Observable<any> {
     return this.httpClient.get<any>(this.apiURLPath);
