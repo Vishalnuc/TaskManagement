@@ -9,20 +9,17 @@ import { ITask } from './task.interface';
 export class TaskService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiURLPath = 'http://localhost:5073/api/TaskManagement/';
+  private apiURLPath = 'https://taskmanagementtms.azurewebsites.net/';
 
   getAllTasks(): Observable<any> {
-    debugger;
     return this.httpClient.get<any>(this.apiURLPath);
   }
 
   saveTask(taskData: ITask): Observable<ITask> {
-    debugger;
     return this.httpClient.post<ITask>(this.apiURLPath, taskData);
   }
 
   deleteTask(taskID: number): Observable<void> {
-    debugger;
     return this.httpClient.delete<void>(`${this.apiURLPath}${taskID}`);
 
   }
