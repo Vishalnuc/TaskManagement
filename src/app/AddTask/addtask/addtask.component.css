@@ -1,0 +1,126 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main container */
+.container {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid var(--bs-stroke-color);
+}
+
+/* Modal content */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.modal-content h2 {
+    font-size: 20px !important;
+    font-weight: bold;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #4a90e2; /* Add background color */
+  padding: 10px 20px;          /* Add padding inside the heading */
+  border-radius: 8px;     
+
+}
+
+.modal-content label {
+    font-size: 19px;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: #4CAF50;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+}
+
+.modal-content .cancel-btn {
+    background-color: #f44336;
+    font-size: 20px !important;
+}
+
+.modal-content .cancel-btn:hover {
+    background-color: #e53935;
+}
+
+  ::ng-deep .mat-dialog-container {
+    width: 100vw !important;   /* Maximize the dialog width to 100% of the viewport */
+    max-width: none !important; /* Prevent any maximum width constraint */
+  }
+
+  ::ng-deep .mat-dialog-content {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+.header-label {
+        font-size: 16px;            /* Adjust font size */
+        font-weight: bold;          /* Make the font bold */
+        color: #4a90e2;             /* Set a custom color */
+        padding-bottom: 8px;        /* Add some space below the label */
+        font-family: 'Arial', sans-serif; /* Change font family */
+        margin-bottom: 20px;  /* Space between fields */
+      }
+
+.btn-submit {
+    font-size: 20px !important;
+}

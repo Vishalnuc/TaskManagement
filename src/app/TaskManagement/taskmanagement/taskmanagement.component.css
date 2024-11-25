@@ -1,0 +1,73 @@
+.btn-add-task {
+background-color: lightblue;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    color: #333333;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end !important;
+    font-weight: bold;
+    text-align: left;
+    padding: 16px;
+}
+
+::ng-deep .mat-mdc-dialog-surface,
+::ng-deep .mdc-dialog__surface {
+  --mdc-dialog-container-shape: 15px; 
+}
+
+.align-end {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 80px;
+  }
+
+  .mat-mdc-header-row {
+    background-color: darkseagreen;
+    color: #333333; 
+  }
+
+  .mat-mdc-row {
+    background-color: #eef2f4;
+  }
+
+  .mat-mdc-row:hover {
+    background-color: #e0f2f1;
+  }
+
+  .mat-mdc-header-cell {
+    font-weight: bold;
+    text-align: left;
+    padding: 16px;
+    font-size: 16px;
+    
+
+  }
+
+  .mat-mdc-cell {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .mat-mdc-table {
+    border: 1px solid #ccc; /* Border around the table */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Prevent any content from overflowing */
+    width: 100%;
+    border-collapse: collapse; 
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.mat-header-cell, .mat-cell {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  .mat-elevation-z8 {
+    margin-right: 60px;
+  }
